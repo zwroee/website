@@ -3,92 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guns Profile</title>
+    <title>Profile Card</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://media.discordapp.net/attachments/1212183337074958438/1353562238853709864/download.png?ex=67e21a91&is=67e0c911&hm=ab594f33181dcf78883a85f7dfcb1e0220a68bf063292a262bd4e8a9a8994b55&=&format=webp&quality=lossless&width=141&height=141" type="image/x-icon">
+    <!-- OR if you're using PNG format -->
+    <!-- <link rel="icon" href="favicon.png" type="image/png"> -->
+
     <style>
         body {
-            background-color: black;
-            color: white;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .profile-container {
-            background-color: #111;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: left;
-            width: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: white;
             position: relative;
         }
-        .profile-header {
-            display: flex;
-            align-items: center;
+
+        /* Create a pseudo-element to cover the background */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background-color: black;
+            filter: blur(20px); /* Apply blur to the background only */
+            z-index: -1; /* Make sure the background stays behind the content */
         }
-        .profile-icon {
-            width: 40px;
-            height: 40px;
-            background-color: gray;
-            border-radius: 50%;
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none; /* Make the element unclickable when hidden */
+            transition: opacity 1s ease-in-out;
         }
-        .profile-info {
-            margin-left: 10px;
+        .visible {
+            opacity: 1;
+            pointer-events: auto; /* Enable clicks when visible */
+            transition: opacity 1s ease-in-out;
         }
-        .username {
-            font-size: 14px;
+
+        .click-screen {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            font-size: 24px;
+            text-align: center;
             font-weight: bold;
         }
-        .status {
-            font-size: 12px;
-            color: gray;
+
+        /* Profile card entrance animation */
+        .card {
+            background: #222; /* Darker background for the profile card */
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 450px; /* Fixed width */
+            height: 250px; /* Fixed height for consistency */
+            opacity: 0;
+            pointer-events: none; /* Make the card unclickable when hidden */
+            transition: opacity 1s ease-in-out, transform 0.5s ease-out, box-shadow 0.3s ease-in-out;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
         }
+
+        /* Profile card hover effect */
+        .card:hover {
+            transform: translate(-50%, -50%) scale(1.05); /* Slightly enlarge the card */
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.7); /* White glowing effect */
+        }
+
         .profile-pic {
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            margin-top: 10px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
         }
-        .social-icons {
-            display: flex;
-            margin-top: 15px;
-            gap: 10px;
+
+        .profile-pic:hover {
+            transform: rotate(10deg);
         }
-        .social-icons a {
-            text-decoration: none;
-            color: white;
-            font-size: 20px;
+
+        .icons a img {
+            width: 40px;
+            margin: 8px;
+            filter: invert(1);
+            transition: transform 0.2s;
         }
-        .footer {
-            font-size: 12px;
-            color: gray;
-            margin-top: 10px;
+
+        .icons a img:hover {
+            transform: scale(1.2);
         }
     </style>
 </head>
 <body>
-    <div class="profile-container">
-        <div class="profile-header">
-            <div class="profile-icon"></div>
-            <div class="profile-info">
-                <span class="username">0 ⍰</span>
-            </div>
+
+    <div id="clickScreen" class="click-screen" onclick="showProfile()">[ CLICK ANYWHERE ]</div>
+    
+    <div id="profileCard" class="card hidden">
+        <audio id="backgroundMusic" loop>
+            <source src="music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <img id="profilePic" class="profile-pic" src="https://cdn.discordapp.com/attachments/1212183337074958438/1353553424851140730/images.png?ex=67e2125c&is=67e0c0dc&hm=868ec2d0d0428c3252ddecd52ff389ae781a94364755db869c4bfaf53a31faf8&" alt="Profile Picture">
+        <h2 id="username">zwroe</h2>
+        <p id="status">Submit to Rome. Turn to Christ.</p>
+        <div class="icons">
+            <a href="https://soundcloud.com/zwroe" target="_blank"><img src="https://media.discordapp.net/attachments/1212183337074958438/1353543777716932730/soundcloud.png?ex=67e20960&is=67e0b7e0&hm=d9d7d883d4bbf992b8ec1ab8d86b402210bc80fc5543205cdfb36594bb28949a&=&format=webp&quality=lossless&width=704&height=704" alt="Icon 1"></a>
+            <a href="https://github.com/zwroee" target="_blank"><img src="https://media.discordapp.net/attachments/1212183337074958438/1353543777981304852/github.png?ex=67e20960&is=67e0b7e0&hm=cb5e539568f2807a5767ab9c1d7177372265e0a09c2487d2539c666b0476c5a9&=&format=webp&quality=lossless&width=704&height=704" alt="Icon 2"></a>
+            <a href="https://www.last.fm/user/k33333333333" target="_blank"><img src="https://media.discordapp.net/attachments/1212183337074958438/1353552635445252197/lastdotfm.png?ex=67e211a0&is=67e0c020&hm=81838e4f486e13ddc43f7181d8602f7a61ba6fe0c3f53386b37f6bba14aa9adf&=&format=webp&quality=lossless&width=704&height=704" alt="Icon 3"></a>
         </div>
-        <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
-        <div class="username">frostfrostfrostfrostfrostfrost</div>
-        <div class="status">currently doing nothing</div>
-        <div class="social-icons">
-            <a href="#">🔗</a>
-            <a href="#">🔗</a>
-            <a href="#">🔗</a>
-            <a href="#">🔗</a>
-        </div>
-        <div class="footer">👀 112 | 📍 Hong Kong</div>
     </div>
+    
+    <script>
+        function showProfile() {
+            let clickScreen = document.getElementById("clickScreen");
+            let profileCard = document.getElementById("profileCard");
+            let audio = document.getElementById("backgroundMusic");
+            
+            clickScreen.classList.add("hidden");
+            profileCard.classList.remove("hidden");
+            profileCard.classList.add("visible");
+            
+            setTimeout(() => {
+                profileCard.style.opacity = "1";
+                profileCard.style.pointerEvents = "auto";  // Make the card clickable after transition
+                profileCard.style.transform = "translate(-50%, -50%)"; // Smooth slide-in
+            }, 10);
+            
+            audio.volume = 0;
+            audio.play().catch(error => console.log("Autoplay blocked: ", error));
+            
+            let fadeInterval = setInterval(() => {
+                if (audio.volume < 0.2) {
+                    audio.volume += 0.02;
+                } else {
+                    clearInterval(fadeInterval);
+                }
+            }, 100);
+        }
+    </script>
 </body>
 </html>
