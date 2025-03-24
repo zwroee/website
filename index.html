@@ -7,8 +7,6 @@
 
     <!-- Favicon -->
     <link rel="icon" href="https://media.discordapp.net/attachments/1212183337074958438/1353562238853709864/download.png?ex=67e21a91&is=67e0c911&hm=ab594f33181dcf78883a85f7dfcb1e0220a68bf063292a262bd4e8a9a8994b55&=&format=webp&quality=lossless&width=141&height=141" type="image/x-icon">
-    <!-- OR if you're using PNG format -->
-    <!-- <link rel="icon" href="favicon.png" type="image/png"> -->
 
     <style>
         body {
@@ -21,9 +19,10 @@
             align-items: center;
             color: white;
             position: relative;
+            background: url('https://media.discordapp.net/attachments/1255738487101984809/1353796329343549491/back.png?ex=67e2f495&is=67e1a315&hm=a1ac2996c74fb9bd97f16d99d99930af445e39204b9db4f8eac1cea7c3b34d3a&=&format=webp&quality=lossless&width=1675&height=838') no-repeat center center/cover; /* Replace with your image */
         }
 
-        /* Create a pseudo-element to cover the background */
+        /* Darker Background Overlay */
         body::before {
             content: "";
             position: absolute;
@@ -31,19 +30,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: black;
-            z-index: -1; /* Make sure the background stays behind the content */
-        }
-
-        .hidden {
-            opacity: 0;
-            pointer-events: none; /* Make the element unclickable when hidden */
-            transition: opacity 1s ease-in-out;
-        }
-        .visible {
-            opacity: 1;
-            pointer-events: auto; /* Enable clicks when visible */
-            transition: opacity 1s ease-in-out;
+            background-color: rgba(0, 0, 0, 0.85); /* Darker background */
+            z-index: -1;
         }
 
         .click-screen {
@@ -61,16 +49,17 @@
             font-weight: bold;
         }
 
-        /* Profile card entrance animation */
         .card {
-            background: #222; /* Darker background for the profile card */
+            background: rgba(34, 34, 34, 0.6); /* Semi-transparent */
+            backdrop-filter: blur(10px); /* Soft blur effect */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
             padding: 30px;
             border-radius: 10px;
             text-align: center;
-            width: 450px; /* Fixed width */
-            height: 250px; /* Fixed height for consistency */
+            width: 450px;
+            height: 250px;
             opacity: 0;
-            pointer-events: none; /* Make the card unclickable when hidden */
+            pointer-events: none;
             transition: opacity 1s ease-in-out, transform 0.5s ease-out, box-shadow 0.3s ease-in-out;
             position: absolute;
             top: 50%;
@@ -78,10 +67,9 @@
             transform: translate(-50%, -60%);
         }
 
-        /* Profile card hover effect */
         .card:hover {
-            transform: translate(-50%, -50%) scale(1.05); /* Slightly enlarge the card */
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.7); /* White glowing effect */
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.7);
         }
 
         .profile-pic {
@@ -120,7 +108,7 @@
         
         <img id="profilePic" class="profile-pic" src="https://cdn.discordapp.com/attachments/1212183337074958438/1353553424851140730/images.png?ex=67e2125c&is=67e0c0dc&hm=868ec2d0d0428c3252ddecd52ff389ae781a94364755db869c4bfaf53a31faf8&" alt="Profile Picture">
         <h2 id="username">zwroe</h2>
-        <p id="status">Submit to Rome. Turn to Christ.</p>
+        <p id="status"></p> <!-- Status text will be typed out dynamically -->
         <div class="icons">
             <a href="https://soundcloud.com/zwroe" target="_blank"><img src="https://media.discordapp.net/attachments/1212183337074958438/1353543777716932730/soundcloud.png?ex=67e20960&is=67e0b7e0&hm=d9d7d883d4bbf992b8ec1ab8d86b402210bc80fc5543205cdfb36594bb28949a&=&format=webp&quality=lossless&width=704&height=704" alt="Icon 1"></a>
             <a href="https://github.com/zwroee" target="_blank"><img src="https://media.discordapp.net/attachments/1212183337074958438/1353543777981304852/github.png?ex=67e20960&is=67e0b7e0&hm=cb5e539568f2807a5767ab9c1d7177372265e0a09c2487d2539c666b0476c5a9&=&format=webp&quality=lossless&width=704&height=704" alt="Icon 2"></a>
@@ -140,8 +128,8 @@
             
             setTimeout(() => {
                 profileCard.style.opacity = "1";
-                profileCard.style.pointerEvents = "auto";  // Make the card clickable after transition
-                profileCard.style.transform = "translate(-50%, -50%)"; // Smooth slide-in
+                profileCard.style.pointerEvents = "auto";
+                profileCard.style.transform = "translate(-50%, -50%)";
             }, 10);
             
             audio.volume = 0;
@@ -155,6 +143,20 @@
                 }
             }, 100);
         }
+
+        // Typing Effect for Status
+        let statusText = "Submit to Rome. Turn to Christ.";
+        let i = 0;
+
+        function typeStatus() {
+            if (i < statusText.length) {
+                document.getElementById("status").innerHTML += statusText.charAt(i);
+                i++;
+                setTimeout(typeStatus, 50); // Adjust typing speed here
+            }
+        }
+
+        window.onload = typeStatus;
     </script>
 </body>
 </html>
