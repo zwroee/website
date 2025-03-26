@@ -3,30 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary Meta Tags -->
     <title>zwroe</title>
-    <meta name="title" content="zwroe" />
-    <meta name="description" content="𝘇𝘄𝗿𝗼𝗲 // 𝗳𝗿𝗼𝘀𝘁" />
-    <meta property="og:image" content="https://media.discordapp.net/attachments/1255738487101984809/1353796329343549491/back.png?ex=67e2f495&is=67e1a315&hm=a1ac2996c74fb9bd97f16d99d99930af445e39204b9db4f8eac1cea7c3b34d3a&=&format=webp&quality=lossless&width=1675&height=838" />
 
-
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="zwroe.com" />
+    <meta property="og:url" content="https://zwroe.com" />
     <meta property="og:title" content="zwroe" />
     <meta property="og:description" content="𝘇𝘄𝗿𝗼𝗲 // 𝗳𝗿𝗼𝘀𝘁" />
-    <meta property="og:image" content="https://media.discordapp.net/attachments/1255738487101984809/1353796329343549491/back.png?ex=67e2f495&is=67e1a315&hm=a1ac2996c74fb9bd97f16d99d99930af445e39204b9db4f8eac1cea7c3b34d3a&=&format=webp&quality=lossless&width=1675&height=838" />
+    <meta property="og:image" content="images/background.png" />
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="zwroe.com" />
-    <meta property="twitter:title" content="zwroe" />
-    <meta property="twitter:description" content="𝘇𝘄𝗿𝗼𝗲 // 𝗳𝗿𝗼𝘀𝘁" />
-    <meta property="twitter:image" content="https://media.discordapp.net/attachments/1255738487101984809/1353796329343549491/back.png?ex=67e2f495&is=67e1a315&hm=a1ac2996c74fb9bd97f16d99d99930af445e39204b9db4f8eac1cea7c3b34d3a&=&format=webp&quality=lossless&width=1675&height=838" />
+    <meta property="twitter:image" content="images/background.png" />
 
     <!-- Favicon -->
-    <link rel="icon" href="https://media.discordapp.net/attachments/1212183337074958438/1353562238853709864/download.png?ex=67e21a91&is=67e0c911&hm=ab594f33181dcf78883a85f7dfcb1e0220a68bf063292a262bd4e8a9a8994b55&=&format=webp&quality=lossless&width=141&height=141" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
     <style>
         body {
@@ -39,10 +28,9 @@
             align-items: center;
             color: white;
             position: relative;
-            background: url('https://media.discordapp.net/attachments/1255738487101984809/1353796329343549491/back.png?ex=67e2f495&is=67e1a315&hm=a1ac2996c74fb9bd97f16d99d99930af445e39204b9db4f8eac1cea7c3b34d3a&=&format=webp&quality=lossless&width=1675&height=838') no-repeat center center/cover; /* Replace with your image */
+            background: url('images/background.png') no-repeat center center/cover;
         }
 
-        /* Darker Background Overlay */
         body::before {
             content: "";
             position: absolute;
@@ -50,9 +38,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); /* Darker background */
+            background-color: rgba(0, 0, 0, 0.85);
             z-index: -1;
         }
+
+        .hidden { display: none; }
 
         .click-screen {
             width: 100vw;
@@ -70,9 +60,9 @@
         }
 
         .card {
-            background: rgba(34, 34, 34, 0.6); /* Semi-transparent */
-            backdrop-filter: blur(10px); /* Soft blur effect */
-            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+            background: rgba(34, 34, 34, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 30px;
             border-radius: 10px;
             text-align: center;
@@ -80,16 +70,17 @@
             height: 250px;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 1s ease-in-out, transform 0.5s ease-out, box-shadow 0.3s ease-in-out;
+            transition: opacity 1s ease-in-out, transform 0.5s ease-out;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -60%);
         }
 
-        .card:hover {
-            transform: translate(-50%, -50%) scale(1.05);
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.7);
+      	  .card:hover {
+           	 transform: translate(-50%, -50%) scale(1.05);
+           	 box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.7);
+      
         }
 
         .profile-pic {
@@ -97,11 +88,7 @@
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            transition: transform 0.3s ease-in-out;
-        }
 
-        .profile-pic:hover {
-            transform: rotate(10deg);
         }
 
         .icons a img {
@@ -126,13 +113,13 @@
             Your browser does not support the audio element.
         </audio>
         
-        <img id="profilePic" class="profile-pic" src="https://cdn.discordapp.com/attachments/1212183337074958438/1353553424851140730/images.png?ex=67e2125c&is=67e0c0dc&hm=868ec2d0d0428c3252ddecd52ff389ae781a94364755db869c4bfaf53a31faf8&" alt="Profile Picture">
+        <img id="profilePic" class="profile-pic" src="images/profile.png" alt="Profile Picture">
         <h2 id="username">zwroe</h2>
-        <p id="status"></p> <!-- Status text will be typed out dynamically -->
+        <p id="status"></p>
         <div class="icons">
-            <a href="https://soundcloud.com/zwroe" target="_blank"><img src="https://media.discordapp.net/attachments/1212183337074958438/1353543777716932730/soundcloud.png?ex=67e20960&is=67e0b7e0&hm=d9d7d883d4bbf992b8ec1ab8d86b402210bc80fc5543205cdfb36594bb28949a&=&format=webp&quality=lossless&width=704&height=704" alt="Icon 1"></a>
-            <a href="https://github.com/zwroee" target="_blank"><img src="https://media.discordapp.net/attachments/1212183337074958438/1353543777981304852/github.png?ex=67e20960&is=67e0b7e0&hm=cb5e539568f2807a5767ab9c1d7177372265e0a09c2487d2539c666b0476c5a9&=&format=webp&quality=lossless&width=704&height=704" alt="Icon 2"></a>
-            <a href="https://www.last.fm/user/k33333333333" target="_blank"><img src="https://media.discordapp.net/attachments/1212183337074958438/1353552635445252197/lastdotfm.png?ex=67e211a0&is=67e0c020&hm=81838e4f486e13ddc43f7181d8602f7a61ba6fe0c3f53386b37f6bba14aa9adf&=&format=webp&quality=lossless&width=704&height=704" alt="Icon 3"></a>
+            <a href="https://soundcloud.com/zwroe" target="_blank"><img src="images/soundcloud.png" alt="SoundCloud"></a>
+            <a href="https://github.com/zwroee" target="_blank"><img src="images/github.png" alt="GitHub"></a>
+            <a href="https://www.last.fm/user/k33333333333" target="_blank"><img src="images/lastfm.png" alt="Last.fm"></a>
         </div>
     </div>
     
@@ -144,7 +131,6 @@
             
             clickScreen.classList.add("hidden");
             profileCard.classList.remove("hidden");
-            profileCard.classList.add("visible");
             
             setTimeout(() => {
                 profileCard.style.opacity = "1";
@@ -164,7 +150,6 @@
             }, 100);
         }
 
-        // Typing Effect for Status
         let statusText = "Submit to Rome. Turn to Christ.";
         let i = 0;
 
@@ -172,7 +157,7 @@
             if (i < statusText.length) {
                 document.getElementById("status").innerHTML += statusText.charAt(i);
                 i++;
-                setTimeout(typeStatus, 75); // Adjust typing speed here
+                setTimeout(typeStatus, 75);
             }
         }
 
