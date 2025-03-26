@@ -102,6 +102,67 @@
         .icons a img:hover {
             transform: scale(1.2);
         }
+
+        .volume-control {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px;
+            background: transparent;
+        }
+
+        .volume-control img {
+            width: 30px;
+            cursor: pointer;
+            filter: invert(1);
+        }
+
+        #volumeSlider {
+            width: 120px;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+            outline: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        #volumeSlider:hover {
+            opacity: 1;
+        }
+
+        #volumeSlider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #volumeSlider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        #volumeSlider::-moz-range-thumb {
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #volumeSlider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+        }
     </style>
 </head>
 <body>
@@ -122,6 +183,11 @@
             <a href="https://github.com/zwroee" target="_blank"><img src="images/github.png" alt="GitHub"></a>
             <a href="https://www.last.fm/user/k33333333333" target="_blank"><img src="images/lastfm.png" alt="Last.fm"></a>
         </div>
+    </div>
+
+    <div id="volumeControl" class="volume-control">
+        <img id="volumeIcon" src="images/volume-on.png" alt="Volume Icon" onclick="toggleMute(event)">
+        <input id="volumeSlider" type="range" min="0" max="1" step="0.01" oninput="adjustVolume(this.value)">
     </div>
     
     <script>
@@ -167,6 +233,32 @@
         }
 
         window.onload = typeStatus;
+
+    function toggleMute(event) {
+        event.stopPropagation();
+        let audio = document.getElementById("backgroundMusic");
+        let volumeIcon = document.getElementById("volumeIcon");
+        let volumeSlider = document.getElementById("volumeSlider");
+        
+        if (audio.muted) {
+            audio.muted = false;
+            volumeIcon.src = "images/volume-on.png";
+            volumeSlider.value = audio.volume;
+        } else {
+            audio.muted = true;
+            volumeIcon.src = "images/volume-off.png";
+            volumeSlider.value = 0;
+        }
+    }
+
+    function adjustVolume(value) {
+        let audio = document.getElementById("backgroundMusic");
+        let volumeIcon = document.getElementById("volumeIcon");
+        
+        audio.volume = value;
+        audio.muted = value == 0;
+        volumeIcon.src = value == 0 ? "images/volume-off.png" : "images/volume-on.png";
+    }
     </script>
 </body>
 </html>
