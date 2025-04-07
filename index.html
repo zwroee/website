@@ -47,6 +47,9 @@
         .hidden { display: none; }
 
         .click-screen {
+            font-size: 50px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.7);
             width: 100vw;
             height: 100vh;
             display: flex;
@@ -80,10 +83,9 @@
             transform: translate(-50%, -60%);
         }
 
-      	  .card:hover {
-           	 transform: translate(-50%, -50%) scale(1.05);
-           	 box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.7);
-      
+        .card:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.7);
         }
 
         .profile-pic {
@@ -91,7 +93,6 @@
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
-
         }
 
         .icons a img {
@@ -165,6 +166,12 @@
         #volumeSlider::-moz-range-thumb:hover {
             transform: scale(1.2);
         }
+
+        .glow-text {
+            font-size: 50px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.7);
+        }
     </style>
 </head>
 <body>
@@ -178,7 +185,7 @@
         </audio>
         
         <img id="profilePic" class="profile-pic" src="images/profile.png" alt="Profile Picture">
-        <h2 id="username">zwroe</h2>
+        <h2 id="username"><span class="glow-text">zwroe</span></h2>
         <p id="status"></p>
         <div class="icons">
             <a href="https://soundcloud.com/zwroe" target="_blank"><img src="images/soundcloud.png" alt="SoundCloud"></a>
